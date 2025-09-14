@@ -2,3 +2,53 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+
+
+/* Markdown styling inside chat bubbles */
+.chat-bubble-content {
+  font-size: 0.9rem;        /* slightly smaller text */
+  line-height: 1.4;         /* tighter line spacing */
+}
+
+.chat-bubble-content ul {
+  list-style-type: disc;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.chat-bubble-content ol {
+  list-style-type: decimal;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.chat-bubble-content li {
+  margin: 0.25rem 0;
+}
+
+.chat-bubble-content a {
+  color: #2563eb;           /* Tailwind blue-600 */
+  text-decoration: underline;
+}
+
+.chat-bubble-content a:hover {
+  color: #1e40af;           /* Tailwind blue-800 */
+}
+
+.chat-bubble-content strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+.chat-bubble-content h1,
+.chat-bubble-content h2,
+.chat-bubble-content h3,
+.chat-bubble-content h4 {
+  font-size: 1rem;          /* keep headings chat-sized */
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.chat-bubble-content p {
+  margin: 0.25rem 0;
+}

@@ -46,7 +46,7 @@ async function getBotResponse(userMessage) {
     }
 }
 
-// Append a message to the chat UI
+// Append a message to the chat UI (with Markdown support)
 function appendMessage(content, sender = "AI") {
     const wrapper = document.createElement("div");
     wrapper.className = `flex gap-2 items-start ${sender === "You" ? "flex-row-reverse" : ""}`;
@@ -54,8 +54,10 @@ function appendMessage(content, sender = "AI") {
     const bubble = document.createElement("div");
     bubble.className = `${sender === "You"
         ? "bg-green-100 text-green-900"
-        : "bg-blue-100 text-blue-900"} px-3 py-2 rounded-xl max-w-[70%] shadow`;
-    bubble.textContent = content;
+        : "bg-blue-100 text-blue-900"} px-3 py-2 rounded-xl max-w-[70%] shadow chat-bubble-content`;
+
+    // Parse Markdown → HTML
+    bubble.innerHTML = marked.parse(content);
 
     const label = document.createElement("span");
     label.className = "text-xs text-gray-400 self-end";
@@ -65,8 +67,9 @@ function appendMessage(content, sender = "AI") {
     wrapper.appendChild(label);
 
     chatMessages.appendChild(wrapper);
-    chatMessages.scrollTop = chatMessages.scrollHeight; // auto-scroll
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 // Handle sending messages
 chatForm.addEventListener("submit", async (e) => {
@@ -86,8 +89,8 @@ chatForm.addEventListener("submit", async (e) => {
     // Fetch bot reply
     const reply = await getBotResponse(userMessage);
 
-    // Replace placeholder with actual reply
-    loadingBubble.textContent = reply;
+    // Replace placeholder with actual reply (Markdown parsed)
+    loadingBubble.innerHTML = marked.parse(reply);
 });
 
 // Handle sidebar section switching
