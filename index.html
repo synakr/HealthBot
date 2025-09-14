@@ -67,10 +67,11 @@
     </nav>
 
     <!-- Chatbot Widget Placeholder -->
+    <!-- Chatbot Floating Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <div class="chatbot-quick bg-gray-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
+        <a href="chatbot.html" id="chatbot-fab" class="chatbot-quick bg-blue-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-transform hover:scale-110" title="Open Chatbot">
             <i class="fas fa-comment-dots text-2xl"></i>
-        </div>
+        </a>
     </div>
 
     <!-- Main Content Area - All "pages" are sections here -->
@@ -691,18 +692,17 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateContent(currentLang);
             showPage('home-page');
-            
             // Apply theme from localStorage on page load
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
 
-                // Add click event for 'Start Chatting Now' button
-                const chatBtn = document.querySelector('button[data-i18n="heroCTA"]');
-                if (chatBtn) {
-                    chatBtn.addEventListener('click', function() {
-                        alert('Chatbot functionality coming soon!');
-                    });
-                }
+            // Add click event for 'Start Chatting Now' button to open chatbot page
+            const chatBtn = document.querySelector('button[data-i18n="heroCTA"]');
+            if (chatBtn) {
+                chatBtn.addEventListener('click', function() {
+                    window.location.href = 'chatbot.html';
+                });
+            }
         });
     </script>
 </body>

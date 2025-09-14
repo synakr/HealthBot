@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Health Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-300 transition-colors duration-500">
+    <!-- Chatbot Widget (Full Page) -->
+    <div class="flex flex-col md:flex-row w-full md:w-[900px] h-screen md:h-[600px] bg-white dark:bg-gray-900 rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden mx-auto my-0 md:my-12 border-0 md:border border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <!-- Sidebar -->
+        <aside class="w-40 bg-gradient-to-b from-blue-800 to-blue-600 text-white flex flex-col py-6 px-3 gap-2">
+            <div class="flex items-center gap-2 mb-6">
+                <i class="fas fa-stethoscope text-xl"></i>
+                <span class="font-bold text-lg">Public Health</span>
+            </div>
+            <nav class="flex-1 flex flex-col gap-2">
+                <button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-900/40 hover:bg-blue-900/70 transition" data-section="symptoms">
+                    <i class="fas fa-notes-medical"></i>
+                    <span class="text-sm">Symptoms Checker</span>
+                </button>
+                <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition" data-section="vaccination">
+                    <i class="fas fa-syringe"></i>
+                    <span class="text-sm">Vaccination Info</span>
+                </button>
+                <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition" data-section="mental">
+                    <i class="fas fa-brain"></i>
+                    <span class="text-sm">Mental Health</span>
+                </button>
+                <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition" data-section="emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    <span class="text-sm">Emergency</span>
+                </button>
+            </nav>
+            <a href="index.html" class="mt-auto flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-900/40 hover:bg-blue-900/70 transition">
+                <i class="fas fa-arrow-left"></i>
+                <span class="text-sm">Back</span>
+            </a>
+        </aside>
+        <!-- Chat Area -->
+        <section class="flex-1 flex flex-col bg-gray-50 dark:bg-gray-800">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-user-md text-blue-700 dark:text-blue-400"></i>
+                    <span class="font-semibold text-gray-900 dark:text-white">AI New Bot</span>
+                </div>
+                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition">New Chat</button>
+            </div>
+            <!-- Search Bar -->
+            <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                <input type="text" placeholder="Search" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
+            </div>
+            <!-- Chat Messages -->
+            <div id="chatbot-messages" class="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3">
+                <!-- Example messages -->
+                <div class="flex gap-2 items-start">
+                    <div class="bg-blue-100 text-blue-900 px-3 py-2 rounded-xl max-w-[70%] shadow">What are the symptoms of the flu?</div>
+                    <span class="text-xs text-gray-400 self-end">AI</span>
+                </div>
+                <div class="flex gap-2 items-start flex-row-reverse">
+                    <div class="bg-green-100 text-green-900 px-3 py-2 rounded-xl max-w-[70%] shadow">Where can I find a COVID-19 vaccination site near me.</div>
+                    <span class="text-xs text-gray-400 self-end">You</span>
+                </div>
+            </div>
+            <!-- Input Area -->
+            <form id="chatbot-form" class="flex items-center gap-2 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+                <input id="chatbot-input" type="text" placeholder="Type your question..." class="flex-1 px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" autocomplete="off" />
+                <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition">Send</button>
+            </form>
+        </section>
+    </div>
+    <script src="chatbot.js"></script>
+</body>
+</html>
