@@ -10,16 +10,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-300 transition-colors duration-500">
-    <!-- Chatbot Widget (Full Page, Responsive) -->
-    <div class="flex flex-col md:flex-row w-full max-w-full md:w-[900px] h-screen md:h-[600px] bg-white dark:bg-gray-900 rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden mx-auto my-0 md:my-12 border-0 md:border border-gray-200 dark:border-gray-700 transition-all duration-300">
-    <!-- Sidebar -->
-    <aside class="w-full md:w-40 bg-gradient-to-b from-blue-800 to-blue-600 text-white flex flex-row md:flex-col py-2 md:py-6 px-2 md:px-3 gap-2 md:gap-2 items-center md:items-stretch justify-between md:justify-start">
-            <div class="flex items-center gap-2 mb-0 md:mb-6">
-                <i class="fas fa-stethoscope text-xl"></i>
-                <span class="font-bold text-base md:text-lg hidden xs:inline">Public Health</span>
+    <!-- HealthBot Layout -->
+    <div class="flex flex-col md:flex-row w-full max-w-full md:w-[1200px] h-screen md:h-[700px] bg-white dark:bg-gray-900 rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden mx-auto my-0 md:my-12 border-0 md:border border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <!-- Sidebar Navigation -->
+        <aside class="w-56 bg-gradient-to-b from-blue-800 to-blue-600 text-white flex flex-col py-8 px-4 gap-4 items-start justify-start">
+            <div class="flex items-center gap-3 mb-8">
+                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="HealthBot AI" class="w-8 h-8">
+                <span class="font-bold text-lg">HealthBot AI</span>
             </div>
-            <nav class="flex-1 flex flex-row md:flex-col gap-1 md:gap-2">
-                <button class="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-lg bg-blue-900/40 hover:bg-blue-900/70 transition text-xs md:text-sm" data-section="symptoms">
+            <nav class="flex flex-col gap-3 w-full">
+                <a href="/HealthBot/index.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-sm font-medium" data-section="home"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-sm font-medium" data-section="diseases"><i class="fas fa-virus"></i> Diseases</a>
+                <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-sm font-medium" data-section="checker"><i class="fas fa-search"></i> Symptoms Checker</a>
+                <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-sm font-medium" data-section="prevention"><i class="fas fa-shield-alt"></i> Prevention</a>
+                <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-sm font-medium" data-section="resources"><i class="fas fa-book-medical"></i> Resources</a>
+                <button class="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-lg hover:bg-blue-900/40 transition text-xs md:text-sm" data-section="symptoms">
                     <i class="fas fa-notes-medical"></i>
                     <span class="hidden sm:inline">Symptoms</span>
                 </button>
@@ -36,45 +41,88 @@
                     <span class="hidden sm:inline">Emergency</span>
                 </button>
             </nav>
-            <a href="index.html" class="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-lg bg-blue-900/40 hover:bg-blue-900/70 transition text-xs md:text-sm">
-                <i class="fas fa-arrow-left"></i>
-                <span class="hidden sm:inline">Back</span>
-            </a>
         </aside>
-    <!-- Chat Area -->
-    <section class="flex-1 flex flex-col bg-gray-50 dark:bg-gray-800 min-h-[60vh] min-w-0">
-            <!-- Header -->
-            <div class="flex items-center justify-between px-2 md:px-4 py-2 md:py-3 border-b border-gray-200 dark:border-gray-700">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-user-md text-blue-700 dark:text-blue-400"></i>
-                    <span class="font-semibold text-gray-900 dark:text-white">AI New Bot</span>
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col md:flex-row gap-6 p-4 md:p-8 bg-gray-50 dark:bg-gray-800">
+            <!-- Chatbot Section (Unchanged) -->
+            <section class="flex-1 flex flex-col bg-white dark:bg-gray-900 rounded-2xl shadow-lg min-h-[60vh] min-w-0">
+                <!-- ...existing chatbox code... -->
+                <!-- Header -->
+                <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-user-md text-blue-700 dark:text-blue-400"></i>
+                        <span class="font-semibold text-gray-900 dark:text-white">AI New Bot</span>
+                    </div>
+                    <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition">New Chat</button>
                 </div>
-                <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-200 transition">New Chat</button>
-            </div>
-            <!-- Search Bar -->
-            <div class="px-2 md:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                <input type="text" placeholder="Search" class="w-full px-2 md:px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-xs md:text-sm" />
-            </div>
-            <!-- Chat Messages -->
-            <div id="chatbot-messages" class="flex-1 overflow-y-auto px-2 md:px-4 py-2 md:py-3 flex flex-col gap-2 md:gap-3">
-                <!-- Example messages -->
-                <div class="flex gap-1 md:gap-2 items-start">
-                    <div class="bg-blue-100 text-blue-900 px-2 md:px-3 py-2 rounded-xl max-w-[85vw] md:max-w-[70%] shadow text-xs md:text-base">What are the symptoms of the flu?</div>
-                    <span class="text-xs text-gray-400 self-end">AI</span>
+                <!-- Search Bar -->
+                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                    <input type="text" placeholder="Search" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
                 </div>
-                <div class="flex gap-1 md:gap-2 items-start flex-row-reverse">
-                    <div class="bg-green-100 text-green-900 px-2 md:px-3 py-2 rounded-xl max-w-[85vw] md:max-w-[70%] shadow text-xs md:text-base">Where can I find a COVID-19 vaccination site near me.</div>
-                    <span class="text-xs text-gray-400 self-end">You</span>
+                <!-- Chat Messages -->
+                <div id="chatbot-messages" class="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3">
+                    <!-- Example messages -->
+                    <div class="flex gap-2 items-start">
+                        <div class="bg-blue-100 text-blue-900 px-3 py-2 rounded-xl max-w-[85vw] md:max-w-[70%] shadow text-base">What are the symptoms of the flu?</div>
+                        <span class="text-xs text-gray-400 self-end">AI</span>
+                    </div>
+                    <div class="flex gap-2 items-start flex-row-reverse">
+                        <div class="bg-green-100 text-green-900 px-3 py-2 rounded-xl max-w-[85vw] md:max-w-[70%] shadow text-base">Where can I find a COVID-19 vaccination site near me.</div>
+                        <span class="text-xs text-gray-400 self-end">You</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Input Area -->
-            <form id="chatbot-form" class="flex items-center gap-1 md:gap-2 px-2 md:px-4 py-2 md:py-3 border-t border-gray-200 dark:border-gray-700">
-                <input id="chatbot-input" type="text" placeholder="Type your question..." class="flex-1 px-2 md:px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-xs md:text-sm" autocomplete="off" />
-                <button type="submit" class="bg-blue-700 text-white px-3 md:px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition text-xs md:text-base">Send</button>
-            </form>
-        </section>
+                <!-- Input Area -->
+                <form id="chatbot-form" class="flex items-center gap-2 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+                    <input id="chatbot-input" type="text" placeholder="Type your question..." class="flex-1 px-3 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" autocomplete="off" />
+                    <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition text-base">Send</button>
+                </form>
+            </section>
+            <!-- Right Panel: Trending Topics & Quick Links -->
+            <aside class="w-full md:w-80 flex flex-col gap-6">
+                <!-- Trending Topics -->
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6">
+                    <h2 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Trending Topics</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-bolt text-blue-500"></i> Seasonal Flu</li>
+                        <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-bolt text-blue-500"></i> COVID-19 Updates</li>
+                        <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-bolt text-blue-500"></i> Diabetes Management</li>
+                        <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-bolt text-blue-500"></i> Mental Health Awareness</li>
+                    </ul>
+                </div>
+                <!-- Quick Links -->
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6">
+                    <h2 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Quick Links</h2>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="flex items-center gap-2 text-blue-700 dark:text-blue-400 hover:underline"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                        <li><a href="#" class="flex items-center gap-2 text-blue-700 dark:text-blue-400 hover:underline"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li><a href="#" class="flex items-center gap-2 text-blue-700 dark:text-blue-400 hover:underline"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
+                        <li><a href="#" class="flex items-center gap-2 text-blue-700 dark:text-blue-400 hover:underline"><i class="fas fa-user-shield"></i> Nearest Health Care Facility</a></li>
+                    </ul>
+                </div>
+                <!-- Quick Health Survey -->
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col items-center">
+                    <h2 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Quick Health Survey</h2>
+                    <!-- <p class="text-gray-700 dark:text-gray-300 mb-4 text-center">Take a quick survey for possible diseases and risk factors.</p> -->
+                    <a href="health-survey.html" class="bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-800 transition text-base flex items-center gap-2">
+                        <i class="fas fa-clipboard-list"></i> Start Survey
+                    </a>
+                </div>
+            </aside>
+        </main>
     </div>
     <script src="chatbot.js"></script>
     <script src="api.js"></script>
+    <script>
+    // Sidebar active state logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarItems = documefnt.querySelectorAll('aside nav [data-section]');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                sidebarItems.forEach(i => i.classList.remove('bg-blue-900/70'));
+                this.classList.add('bg-blue-900/70');
+            });
+        });
+    });
+    </script>
 </body>
 </html>

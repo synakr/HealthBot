@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Survey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-300 transition-colors duration-500">
+    <div class="max-w-xl mx-auto my-12 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8">
+        <h1 class="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400 flex items-center gap-2"><i class="fas fa-clipboard-list"></i> Quick Health Survey</h1>
+        <form id="health-survey-form" class="space-y-6">
+            <div>
+                <label for="name" class="block font-medium mb-1">Name</label>
+                <input type="text" id="name" name="name" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+            </div>
+            <div>
+                <label for="age" class="block font-medium mb-1">Age</label>
+                <input type="number" id="age" name="age" min="0" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+            </div>
+            <div>
+                <label for="gender" class="block font-medium mb-1">Gender</label>
+                <select id="gender" name="gender" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label for="temperature" class="block font-medium mb-1">Body Temperature (°C)</label>
+                <input type="number" id="temperature" name="temperature" step="0.1" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+            </div>
+            <div>
+                <label for="bp" class="block font-medium mb-1">Blood Pressure (mmHg)</label>
+                <input type="text" id="bp" name="bp" placeholder="e.g. 120/80" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Do you smoke?</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center gap-2"><input type="radio" name="smoke" value="yes" required> Yes</label>
+                    <label class="flex items-center gap-2"><input type="radio" name="smoke" value="no"> No</label>
+                </div>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">How often do you exercise?</label>
+                <select id="exercise" name="exercise" required class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+                    <option value="">Select</option>
+                    <option value="never">Never</option>
+                    <option value="rarely">Rarely</option>
+                    <option value="sometimes">Sometimes</option>
+                    <option value="often">Often</option>
+                    <option value="daily">Daily</option>
+                </select>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Rate your stress level (1-5)</label>
+                <input type="range" id="stress" name="stress" min="1" max="5" step="1" value="3" class="w-full">
+                <div class="flex justify-between text-xs mt-1"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+            </div>
+            <div>
+                <label class="block font-medium mb-1">Select any symptoms you have:</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="cough"> Cough</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="fever"> Fever</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="sore throat"> Sore Throat</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="headache"> Headache</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="chest pain"> Chest Pain</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="symptom" value="fatigue"> Fatigue</label>
+                </div>
+            </div>
+            <div>
+                <label for="other-symptoms" class="block font-medium mb-1">Other Symptoms</label>
+                <textarea id="other-symptoms" name="other-symptoms" rows="2" placeholder="Describe any other symptoms..." class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"></textarea>
+            </div>
+            <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-800 transition text-base flex items-center gap-2"><i class="fas fa-paper-plane"></i> Submit Survey</button>
+        </form>
+        <div id="survey-result" class="mt-8 hidden p-4 rounded-lg bg-blue-50 dark:bg-blue-900 text-blue-900 dark:text-blue-100"></div>
+    </div>
+    <script>
+    document.getElementById('health-survey-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Enhanced logic for demonstration
+        const temp = parseFloat(document.getElementById('temperature').value);
+        const bp = document.getElementById('bp').value;
+        const stress = parseInt(document.getElementById('stress').value);
+        const exercise = document.getElementById('exercise').value;
+        const smoke = document.querySelector('input[name="smoke"]:checked')?.value;
+        const gender = document.getElementById('gender').value;
+        const age = parseInt(document.getElementById('age').value);
+        const checkedSymptoms = Array.from(document.querySelectorAll('input[name="symptom"]:checked')).map(cb => cb.value);
+        const otherSymptoms = document.getElementById('other-symptoms').value.toLowerCase();
+        let result = '';
+        let risk = [];
+        if (temp > 37.5) result += 'Fever detected. ';
+        if (bp && (/\d{2,3}\/\d{2,3}/.test(bp))) {
+            const [sys, dia] = bp.split('/').map(Number);
+            if (sys > 140 || dia > 90) risk.push('High blood pressure');
+            if (sys < 90 || dia < 60) risk.push('Low blood pressure');
+        }
+        if (checkedSymptoms.includes('cough') || checkedSymptoms.includes('sore throat') || otherSymptoms.includes('cough') || otherSymptoms.includes('sore throat')) result += 'Possible flu or cold. ';
+        if (checkedSymptoms.includes('chest pain') || otherSymptoms.includes('chest pain')) risk.push('Seek medical attention for chest pain.');
+        if (smoke === 'yes') risk.push('Smoking increases health risks.');
+        if (stress >= 4) risk.push('High stress level.');
+        if (exercise === 'never' || exercise === 'rarely') risk.push('Low physical activity.');
+        if (age > 60) risk.push('Age-related risk.');
+        if (!result && !risk.length) result = 'No major issues detected. Monitor your health.';
+        else if (risk.length) result += 'Risk factors: ' + risk.join(', ') + '.';
+        document.getElementById('survey-result').textContent = result;
+        document.getElementById('survey-result').classList.remove('hidden');
+    });
+    </script>
+</body>
+</html>
